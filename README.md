@@ -3,9 +3,13 @@
 
 # 相关技术栈
 **web**：solid.js
+
 **移动端**：待定（ReactNative？）
+
 **后端**：nodejs
+
 **数据库**：MongoDB
+
 **区块链**：web3.js
 
 # 进度

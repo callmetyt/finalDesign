@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo 'checking web...'
+cd web
+pnpm run lint
+echo 'web checked √'
+
+echo 'checking server...'
+cd ../server
+pnpm run lint
+pnpm run test
+echo 'server checked √'
+
+echo 'all checked √'
