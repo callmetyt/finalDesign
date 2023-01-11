@@ -1,4 +1,5 @@
 import { createHash } from "crypto";
+import { Model } from "mongoose";
 
 import { TeaInfo } from "../types";
 import { isObjEmpty } from "../utils";
@@ -54,7 +55,7 @@ class Chain {
   private difficulty: number;
 
   constructor(difficulty: number) {
-    this.chain = this.initChain();
+    this.chain = [];
     this.difficulty = difficulty;
   }
 
@@ -62,34 +63,26 @@ class Chain {
     this.difficulty = difficulty;
   }
 
-  private initChain() {
-    // TODO:数据库中读取Block
-    const existsBlocks = [
-      new Block(
-        {
-          id: 0,
-          garden: {
-            name: "0",
-            teaType: "0",
-            altitude: 0,
-            ph: 0,
-            area: 0,
-            address: "0",
-          },
-          pick: {
-            num: 0,
-            time: 0,
-          },
-          sale: {
-            time: 0,
-            transport: 0,
-            shop: 0,
-          },
-        },
-        null
-      ),
-    ];
-    return existsBlocks;
+  async initChain(teaInfoModel: Model<TeaInfo>) {
+    const existsTeaInfo = await teaInfoModel.find();
+
+    const existsBlocks: Block[] = [];
+    let previousHash = null;
+    for (let i = 0; i < existsTeaInfo.length; i++) {
+      const { tid, garden, pick, sale } = existsTeaInfo[i];
+      const curTeaInfo = {
+        tid,
+        garden,
+        pick,
+        sale,
+      };
+      const curBlock: Block = new Block(curTeaInfo, previousHash);
+      existsBlocks.push(curBlock);
+      // console.log("cur block", curTeaInfo, curBlock, previousHash);
+      previousHash = curBlock.hash;
+    }
+
+    this.chain = existsBlocks;
   }
 
   getLatestBlock() {
@@ -103,8 +96,6 @@ class Chain {
 
     // 添加区块到区块链
     this.chain.push(newBlock);
-
-    // TODO: 区块存入数据库
   }
 
   validateChain() {
@@ -126,7 +117,7 @@ class Chain {
         throw new Error("前后区块链接断裂");
       }
     }
-    // console.log("区块链验证无误", this.chain);
+    console.log("区块链验证无误", this.chain);
     return true;
   }
 }

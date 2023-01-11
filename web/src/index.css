@@ -4,5 +4,7 @@
 
 #root{
   height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-rows: 4rem 1fr;
+  grid-template-columns: 12rem 1fr;
 }

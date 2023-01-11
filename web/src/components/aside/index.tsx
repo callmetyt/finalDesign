@@ -14,11 +14,9 @@ const Asdie: Component<AsdieProps> = ({ activeView, setActiveView }) => {
         <span>用户</span>
       </li>
       <li>
-        <a class="grid grid-rows-2 grid-cols-2">
+        <a class="flex flex-col">
           <img src="" alt="头像" />
           <span>username</span>
-          <div class="text-green-400">在线</div>
-          <button class="text-red-400">注销</button>
         </a>
       </li>
 

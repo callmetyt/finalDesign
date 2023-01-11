@@ -25,4 +25,13 @@ interface TeaInfo {
   sale: SaleInfo;
 }
 
-export { GardenInfo, PickInfo, SaleInfo, TeaInfo };
+type HttpCode = 200;
+
+interface MyResponse<T> {
+  code: HttpCode;
+  body: T;
+}
+
+type TeaInfoResponse = MyResponse<TeaInfo[]>;
+
+export type { GardenInfo, PickInfo, SaleInfo, TeaInfo, TeaInfoResponse };

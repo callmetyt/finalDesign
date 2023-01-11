@@ -4,16 +4,12 @@ const asideList = [
     title: "我的桌面",
   },
   {
-    key: "plant",
-    title: "种植信息",
+    key: "garden",
+    title: "茶园信息",
   },
   {
-    key: "produce",
-    title: "加工信息",
-  },
-  {
-    key: "transform",
-    title: "物流信息",
+    key: "pick",
+    title: "采摘信息",
   },
   {
     key: "sale",
