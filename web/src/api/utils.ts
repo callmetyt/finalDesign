@@ -1,8 +1,21 @@
+/* eslint-disable no-unused-vars */
 import { AxiosResponse } from "axios";
 
-import { TeaInfoResponse } from "../types";
+import { TeaInfo, TeaInfoResponse, VaildChainResponse } from "../types";
 
-export function handleResponse(response: AxiosResponse<TeaInfoResponse>) {
+type PossibleResponseType = TeaInfoResponse | VaildChainResponse;
+type PossibleResponseDataType = TeaInfo[] | boolean;
+
+export function handleResponse(
+  response: AxiosResponse<TeaInfoResponse>
+): TeaInfo[];
+export function handleResponse(
+  response: AxiosResponse<VaildChainResponse>
+): boolean;
+
+export function handleResponse(
+  response: AxiosResponse<PossibleResponseType>
+): PossibleResponseDataType {
   const { data } = response;
   const { code, body } = data;
   switch (code) {

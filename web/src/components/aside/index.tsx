@@ -15,8 +15,12 @@ const Asdie: Component<AsdieProps> = ({ activeView, setActiveView }) => {
       </li>
       <li>
         <a class="flex flex-col">
-          <img src="" alt="头像" />
-          <span>username</span>
+          <div class="avatar">
+            <div class=" w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img src="https://img0.baidu.com/it/u=1353920736,1281326498&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" />
+            </div>
+          </div>
+          <span class="text-xl">管理员1号</span>
         </a>
       </li>
 

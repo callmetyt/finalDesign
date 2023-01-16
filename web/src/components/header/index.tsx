@@ -1,13 +1,24 @@
-import { Component } from "solid-js";
+import { Component, Setter } from "solid-js";
 
-const Header: Component = () => {
+interface HeaderProps {
+  setPageView: Setter<string>;
+}
+
+const Header: Component<HeaderProps> = ({ setPageView }) => {
   return (
     <header class="navbar col-span-2 bg-base-300">
       <div class="navbar-start">
         <a class="btn btn-ghost text-xl">茶叶溯源系统</a>
       </div>
       <div class="navbar-end">
-        <a class="btn btn-ghost text-error">注销</a>
+        <a
+          class="btn btn-ghost text-error"
+          onClick={() => {
+            setPageView("login");
+          }}
+        >
+          注销
+        </a>
       </div>
     </header>
   );

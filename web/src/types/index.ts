@@ -33,5 +33,13 @@ interface MyResponse<T> {
 }
 
 type TeaInfoResponse = MyResponse<TeaInfo[]>;
+type VaildChainResponse = MyResponse<boolean>;
 
-export type { GardenInfo, PickInfo, SaleInfo, TeaInfo, TeaInfoResponse };
+export type {
+  GardenInfo,
+  PickInfo,
+  SaleInfo,
+  TeaInfo,
+  TeaInfoResponse,
+  VaildChainResponse,
+};

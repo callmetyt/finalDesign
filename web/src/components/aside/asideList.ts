@@ -16,7 +16,7 @@ const asideList = [
     title: "销售信息",
   },
   {
-    key: "vaild",
+    key: "vaildChain",
     title: "信息验证",
   },
 ];
