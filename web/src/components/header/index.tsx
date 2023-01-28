@@ -6,7 +6,7 @@ interface HeaderProps {
 
 const Header: Component<HeaderProps> = ({ setPageView }) => {
   return (
-    <header class="navbar col-span-2 bg-base-300">
+    <header class="navbar col-span-2 bg-base-300 shadow-lg">
       <div class="navbar-start">
         <a class="btn btn-ghost text-xl">茶叶溯源系统</a>
       </div>

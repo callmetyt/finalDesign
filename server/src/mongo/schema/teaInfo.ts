@@ -4,7 +4,7 @@ import { TeaInfo } from "../../types";
 const { Schema } = mongoose;
 
 const teaInfoSchema = new Schema<TeaInfo>({
-  tid: Number,
+  tid: String,
   garden: {
     name: String,
     teaType: String,

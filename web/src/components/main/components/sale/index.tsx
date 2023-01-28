@@ -15,20 +15,23 @@ const Sale: Component = () => {
       <table class="table w-full">
         <thead>
           <tr>
-            <For each={saleHeader}>{(title) => <th>{title}</th>}</For>
+            <For each={saleHeader}>
+              {(title) => <th class="text-center">{title}</th>}
+            </For>
           </tr>
         </thead>
 
         <tbody>
           <For each={data()}>
             {(item) => {
-              const { sale } = item;
+              const { sale, tid } = item;
               const { transport, time, shop } = sale;
               return (
                 <tr class="hover">
-                  <td>{transport}</td>
-                  <td>{time}</td>
-                  <td>{shop}</td>
+                  <td class="text-center">{tid}</td>
+                  <td class="text-center">{transport}</td>
+                  <td class="text-center">{time}</td>
+                  <td class="text-center">{shop}</td>
                 </tr>
               );
             }}

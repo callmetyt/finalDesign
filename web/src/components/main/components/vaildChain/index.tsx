@@ -26,6 +26,14 @@ const infoList = [
 
 const VaildChain: Component = () => {
   let scrollRef: HTMLDivElement;
+  const scrollToBottom = () => {
+    setTimeout(() => {
+      scrollRef.scrollTo({
+        top: 9999,
+        behavior: "smooth",
+      });
+    }, 0);
+  };
 
   function handler() {
     setLoading(true);
@@ -43,14 +51,13 @@ const VaildChain: Component = () => {
           setNetSignal(false);
           setLoading(false);
           setDisable(false);
+          scrollToBottom();
           return prev.concat("所有区块链区块检测完毕,信息无误");
         }
+
         const cur = prev.concat(infoList[index]);
-        scrollRef.scrollTo({
-          top: 9999,
-          behavior: "smooth",
-        });
         index++;
+        scrollToBottom();
         return cur;
       });
     }, 1000);

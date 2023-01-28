@@ -19,7 +19,7 @@ interface SaleInfo {
 }
 
 interface TeaInfo {
-  tid: number; // 茶叶编号
+  tid: string; // 茶叶编号
   garden: GardenInfo;
   pick: PickInfo;
   sale: SaleInfo;

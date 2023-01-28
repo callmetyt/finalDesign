@@ -19,7 +19,7 @@ const App: Component = () => {
         <div class="h-full grid grid-cols-[12rem_1fr] grid-rows-[4rem_1fr]">
           <Header setPageView={setPageView} />
           <Asdie activeView={activeView} setActiveView={setActiveView} />
-          <Main activeView={activeView}></Main>
+          <Main activeView={activeView} setActiveView={setActiveView}></Main>
         </div>
       </Match>
       <Match when={pageView() === "login"}>

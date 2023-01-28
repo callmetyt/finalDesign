@@ -15,19 +15,22 @@ const Pick: Component = () => {
       <table class="table w-full">
         <thead>
           <tr>
-            <For each={pickHeader}>{(title) => <th>{title}</th>}</For>
+            <For each={pickHeader}>
+              {(title) => <th class="text-center">{title}</th>}
+            </For>
           </tr>
         </thead>
 
         <tbody>
           <For each={data()}>
             {(item) => {
-              const { pick } = item;
+              const { pick, tid } = item;
               const { num, time } = pick;
               return (
                 <tr class="hover">
-                  <td>{num}</td>
-                  <td>{time}</td>
+                  <td class="text-center">{tid}</td>
+                  <td class="text-center">{num}</td>
+                  <td class="text-center">{time}</td>
                 </tr>
               );
             }}

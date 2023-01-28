@@ -1,4 +1,4 @@
-import { Component, Match, Switch } from "solid-js";
+import { Component, Match, Setter, Switch } from "solid-js";
 
 import Home from "./components/home";
 import Garden from "./components/garden";
@@ -8,14 +8,15 @@ import VaildChain from "./components/vaildChain";
 
 interface MainProps {
   activeView: () => string;
+  setActiveView: Setter<string>;
 }
 
-const Main: Component<MainProps> = ({ activeView }) => {
+const Main: Component<MainProps> = ({ activeView, setActiveView }) => {
   return (
     <main class="flex justify-center p-8">
       <Switch fallback={<section>Not Found</section>}>
         <Match when={activeView() === "home"}>
-          <Home />
+          <Home setActiveView={setActiveView} />
         </Match>
         <Match when={activeView() === "garden"}>
           <Garden />
