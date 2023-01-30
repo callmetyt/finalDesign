@@ -1,8 +1,15 @@
-import { Component, Setter } from "solid-js";
+import { Component, createSignal, Setter } from "solid-js";
+
+import { formatTimeToClock } from "../../../../utils";
 
 interface HomeProps {
   setActiveView: Setter<string>;
 }
+
+const [refreshTime, setRefreshTime] = createSignal(12089);
+setInterval(() => {
+  setRefreshTime((prev) => prev + 1);
+}, 1000);
 
 const Home: Component<HomeProps> = ({ setActiveView }) => {
   const handler = () => {
@@ -26,7 +33,9 @@ const Home: Component<HomeProps> = ({ setActiveView }) => {
 
       <div>
         <div class="text-center">距离上次信息验证已过:</div>
-        <div class="text-center font-bold">1小时3分钟22秒</div>
+        <div class="text-center font-bold">
+          {formatTimeToClock(refreshTime())}
+        </div>
       </div>
     </section>
   );

@@ -1,11 +1,12 @@
-import { Component, createSignal, Setter } from "solid-js";
+import { Component, createSignal } from "solid-js";
 
 import { TeaInfo } from "../../../../types";
 
 interface TableHeaderProps {
   // eslint-disable-next-line no-unused-vars
   apiFunction: (key: string) => Promise<TeaInfo[]>;
-  mutate: Setter<TeaInfo[]>;
+  // eslint-disable-next-line no-unused-vars
+  mutate: (newData: TeaInfo[]) => void;
 }
 
 const [searchKey, setSearchKey] = createSignal("");

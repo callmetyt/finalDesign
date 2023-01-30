@@ -1,19 +1,33 @@
 import { Component, createRenderEffect, createResource, For } from "solid-js";
+
 import { getGardenInfo } from "../../../../api/getGardenInfo";
 import { getTeaInfo } from "../../../../api/getTeaInfo";
+import generateQrcode from "../../../../utils/generateQrcode";
+import Pagination, { createPagination } from "../pagination";
 import TableHeader from "../tableHeader";
 import { gardenHeader } from "./garden";
 
-const [data, { mutate, refetch }] = createResource(getTeaInfo);
+const [data, { refetch }] = createResource(getTeaInfo);
 
 const Garden: Component = () => {
   createRenderEffect(() => {
     refetch();
   });
 
+  const {
+    activeListData,
+    isEnd,
+    isStart,
+    next,
+    previous,
+    toEnd,
+    toStart,
+    resetAllData,
+  } = createPagination(data(), 5);
+
   return (
     <section class="overflow-x-auto flex-1">
-      <TableHeader mutate={mutate} apiFunction={getGardenInfo} />
+      <TableHeader mutate={resetAllData} apiFunction={getGardenInfo} />
 
       <table class="table w-full">
         <thead>
@@ -26,7 +40,7 @@ const Garden: Component = () => {
 
         <tbody class="text-center">
           <For
-            each={data()}
+            each={activeListData()}
             fallback={<div class="pt-4 font-bold text-xl">暂无数据</div>}
           >
             {(item) => {
@@ -42,7 +56,15 @@ const Garden: Component = () => {
                   <td>{area}</td>
                   <td>{address}</td>
                   <td>
-                    <button class="btn">查看溯源二维码</button>
+                    <label
+                      for="my-modal"
+                      class="btn btn-info"
+                      onClick={() => {
+                        generateQrcode(`${tid} ${name} ${teaType}`);
+                      }}
+                    >
+                      查看溯源二维码
+                    </label>
                   </td>
                 </tr>
               );
@@ -50,6 +72,15 @@ const Garden: Component = () => {
           </For>
         </tbody>
       </table>
+
+      <Pagination
+        isEnd={isEnd}
+        isStart={isStart}
+        next={next}
+        previous={previous}
+        toStart={toStart}
+        toEnd={toEnd}
+      />
     </section>
   );
 };
